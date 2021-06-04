@@ -16,17 +16,38 @@ const Button = ({text, handleClick}) => {
     )
 }
 
+const StatisticsLine = ({text, value}) => {
+    return (
+        <tr>
+            <td>{text}</td>
+            <td>{value}</td>
+        </tr>
+    )
+}
+
 const Statistics = ({good, neutral, bad}) => {
     const allCount = good + neutral + bad
+    const positivePercent = good/ allCount * 100;
+
+    if (allCount <= 0) {
+        return (
+            <div>
+                <p>No feedback given</p>
+            </div>
+        )
+    }
+
     return (
-        <div>
-            <p>Good {good}</p>
-            <p>Neutral {neutral}</p>
-            <p>Bad {bad}</p>
-            <p>All {allCount}</p>
-            <p>Average {(good + bad * -1)/ allCount}</p>
-            <p>Positive {good/ allCount * 100} %</p>
-        </div>
+        <table>
+            <tbody>
+                <StatisticsLine text="Good" value={good} />
+                <StatisticsLine text="Neutral" value={neutral} />
+                <StatisticsLine text="Bad" value={bad} />
+                <StatisticsLine text="All" value={allCount} />
+                <StatisticsLine text="Average" value={(good + bad * -1)/ allCount} />
+                <StatisticsLine text="Positive" value={positivePercent + " %"} />
+            </tbody>
+        </table>
     )
 }
 
