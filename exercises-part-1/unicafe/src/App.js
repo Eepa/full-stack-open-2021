@@ -17,11 +17,15 @@ const Button = ({text, handleClick}) => {
 }
 
 const Statistics = ({good, neutral, bad}) => {
+    const allCount = good + neutral + bad
     return (
         <div>
             <p>Good {good}</p>
             <p>Neutral {neutral}</p>
             <p>Bad {bad}</p>
+            <p>All {allCount}</p>
+            <p>Average {(good + bad * -1)/ allCount}</p>
+            <p>Positive {good/ allCount * 100} %</p>
         </div>
     )
 }
