@@ -1,41 +1,51 @@
 import React, { useState } from 'react';
 
+// const Display = ({counter}) => {
+//     return (
+//         <div>{counter}</div>
+//     )
+// }
+const Display = ({counter}) => <div>{counter}</div>
 
-const Hello = ({name, age}) => {
-    // const { name, age } = props
 
-    // const bornYear = () => {
-    //     const yearNow = new Date().getFullYear()
-    //     return yearNow - props.age
+// const Button = ({handleClick, text}) => {
+//     return (
+//         <button onClick={handleClick}>
+//             {text}
+//         </button>
+//     )
+// }
+const Button = ({handleClick, text}) => (
+    <button onClick={handleClick}>
+        {text}
+    </button>
+)
+
+const App = (props) => {
+
+    const [counter, setCounter] = useState(100)
+
+    // setTimeout(
+    //     () => setCounter(counter + 1),
+    //     1000
+    // )
+
+    // const handleClick = () => {
+    //     console.log('clicked')
     // }
 
-    const bornYear = () => new Date().getFullYear() - age
+    const increaseByOne = () => setCounter(counter + 1)
+    const decreaseByOne = () => setCounter(counter - 1)
+    const setToZero = () => setCounter(0)
+
 
     return (
         <div>
-            <p>Hello {name}, you are {age} years old</p>
-            <p>So you were probably born on {bornYear()}</p>
+            <Display counter={counter} />
+            <Button handleClick={increaseByOne} text='plus' />
+            <Button handleClick={setToZero} text='zero' />
+            <Button handleClick={decreaseByOne} text='minus' />
         </div>
-    )
-}
-
-
-const App = (props) => {
-    const name = 'Pekka'
-    const age = 10
-    const {counter} = props
-
-    // console.log('Hello from component')
-    // return (
-    //     <div>
-    //         <h1>Greetings</h1>
-    //         <Hello name="Maya" age={26 + 10}/>
-    //         <Hello name={name} age={age}/>
-    //         <Hello />
-    //     </div>
-    // )
-    return (
-        <div>{counter}</div>
     )
 }
 
